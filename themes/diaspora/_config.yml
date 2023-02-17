@@ -24,6 +24,7 @@ welcome_cover: /img/welcome-cover.jpg
 cover: 
   - /img/cover.jpg
   - /img/welcome-cover.jpg
+  - /img/welcome-cover2.jpg
 
 # 是否显示Twitter分享卡片图像(图像尺寸要求：1200*600，creatorid不需要带@符号。注意：链接必须是完整url，否则Twitter将无法读取图片信息）
 twitterpic:
@@ -41,7 +42,7 @@ scrollbar: true
 # 本地搜索,请将索引文件放在网站根目录,或修改主题js文件的path值
 local_search:
     # 是否启用
-    enable: false
+    enable: true
 
 # 是否显示 一言(hitokoto)
 hitokoto: true
