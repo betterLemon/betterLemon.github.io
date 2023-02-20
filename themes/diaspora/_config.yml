@@ -23,8 +23,9 @@ welcome_cover: /img/welcome-cover.jpg
 # 默认文章封面图（随机调用,支持外链）
 cover: 
   - /img/cover.jpg
-  - /img/welcome-cover.jpg
   - /img/welcome-cover2.jpg
+  - /img/welcome-cover3.jpg
+  - /img/welcome-cover4.jpg
 
 # 是否显示Twitter分享卡片图像(图像尺寸要求：1200*600，creatorid不需要带@符号。注意：链接必须是完整url，否则Twitter将无法读取图片信息）
 twitterpic:
