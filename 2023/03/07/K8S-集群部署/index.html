@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="zh_cn" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>K8S 集群部署 - 柠檬汽水</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,K8S 集群部署使用kubeasz进行离线集群部署准备工作
+直接下载安装工具
+123export release=3.0.0curl -C- -fLO --retry 3 https://githu,"> 
+    <meta name="author" content="dongxuxie"> 
+    <link rel="alternative" href="atom.xml" title="柠檬汽水" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="K8S 集群部署 - 柠檬汽水"/>
+    <meta name="twitter:description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,K8S 集群部署使用kubeasz进行离线集群部署准备工作
+直接下载安装工具
+123export release=3.0.0curl -C- -fLO --retry 3 https://githu,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="柠檬汽水"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="K8S 集群部署 - 柠檬汽水"/>
+    <meta property="og:description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,K8S 集群部署使用kubeasz进行离线集群部署准备工作
+直接下载安装工具
+123export release=3.0.0curl -C- -fLO --retry 3 https://githu,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">柠檬汽水</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://betterlemon.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">K8S 集群部署</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">K8S 集群部署</h1>
+        <div class="stuff">
+            <span>三月 07, 2023</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="K8S-集群部署"><a href="#K8S-集群部署" class="headerlink" title="K8S 集群部署"></a>K8S 集群部署</h1><h3 id="使用kubeasz进行离线集群部署"><a href="#使用kubeasz进行离线集群部署" class="headerlink" title="使用kubeasz进行离线集群部署"></a>使用kubeasz进行离线集群部署</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul>
+<li><p>直接下载安装工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export release=3.0.0</span><br><span class="line">curl -C- -fLO --retry 3 https://github.com/easzlab/kubeasz/releases/download/$&#123;release&#125;/ezdown</span><br><span class="line">chmod +x ./ezdown</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载 k8s&#x2F;docker 安装包 ( 默认下载最新版本 )</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ezdown -D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载离线系统包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ezdown -P</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在接外网情况下可以直接使用上述命令，否则将在后续的安装包中给出下载好的文件。完成后目录如下</p>
+<ul>
+<li><code>/etc/kubeasz</code> 包含 kubeasz 版本为 ${release} 的发布代码</li>
+<li><code>/etc/kubeasz/bin</code> 包含 k8s&#x2F;etcd&#x2F;docker&#x2F;cni 等二进制文件</li>
+<li><code>/etc/kubeasz/down</code> 包含集群安装时需要的离线容器镜像</li>
+<li><code>/etc/kubeasz/down/packages</code> 包含集群安装时需要的系统基础软件</li>
+</ul>
+</li>
+</ul>
+<h4 id="集群规划"><a href="#集群规划" class="headerlink" title="集群规划"></a>集群规划</h4><ul>
+<li><p>测试环境规划3台服务器做集群</p>
+<table>
+<thead>
+<tr>
+<th align="center">IP</th>
+<th align="center">k8s</th>
+<th align="center">hostname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10.70.132.55</td>
+<td align="center">master</td>
+<td align="center">k8s-master</td>
+</tr>
+<tr>
+<td align="center">10.70.132.39</td>
+<td align="center">worker</td>
+<td align="center">k8s-slave1</td>
+</tr>
+<tr>
+<td align="center">10.70.132.189</td>
+<td align="center">worker</td>
+<td align="center">k8s-slave2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>默认配置下容器&#x2F;kubelet会占用&#x2F;var的磁盘空间，如果磁盘分区特殊，可以设置config.yml中的容器&#x2F;kubelet数据目录：<code>CONTAINERD_STORAGE_DIR</code> <code>DOCKER_STORAGE_DIR</code> <code>KUBELET_ROOT_DIR</code>  正常情况下可保持不变</p>
+</li>
+<li><p>三台服务器配置互信免密</p>
+</li>
+</ul>
+<h4 id="安装k8s集群"><a href="#安装k8s集群" class="headerlink" title="安装k8s集群"></a>安装k8s集群</h4><h6 id="离线模式"><a href="#离线模式" class="headerlink" title="离线模式"></a>离线模式</h6><ul>
+<li><p>启动 kubeasz 容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ezdown -S</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置允许离线安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/^INSTALL_SOURCE.*$/INSTALL_SOURCE: &quot;offline&quot;/g&#x27; /etc/kubeasz/example/config.yml </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若安装单机版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it kubeasz ezctl start-aio</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多节点集群安装</p>
+<ul>
+<li><p>先执行上面的单节点安装 docker exec 命令，然后进入docker 容器内 <strong>docker exec -it kubeasz bash</strong></p>
+</li>
+<li><p>kubeasz 容器会映射宿主机的目录，所以能容器环境下执行或使用 &#x2F;etc&#x2F;kubeasz 目录下的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/kubeasz</span><br><span class="line">./ezctl new k8s-01  这里表示创建一个名称为 k8s-01 的集群，名字可自取，这一步会初始化一些基本的配置文件出来</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件 &#x2F;etc&#x2F;kubeasz&#x2F;clusters&#x2F;k8s-01&#x2F;hosts， 注意以下配置，对应集群规划进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[etcd]</span><br><span class="line">10.70.132.39</span><br><span class="line">10.70.132.55</span><br><span class="line">10.70.132.189</span><br><span class="line"></span><br><span class="line"># master node(s)</span><br><span class="line">[kube_master]</span><br><span class="line">10.70.132.55</span><br><span class="line"></span><br><span class="line"># work node(s)</span><br><span class="line">[kube_node]</span><br><span class="line">10.70.132.189</span><br><span class="line">10.70.132.39</span><br><span class="line"></span><br><span class="line"># [optional] harbor server, a private docker registry</span><br><span class="line"># &#x27;NEW_INSTALL&#x27;: &#x27;true&#x27; to install a harbor server; &#x27;false&#x27; to integrate with existed one</span><br><span class="line">[harbor]</span><br><span class="line">10.70.132.39 NEW_INSTALL=true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 集群服务器之间是否已经安装了NTP 服务器？如果没有的话，请安装 chrony 做节点间时间同步，修改成主节点IP即可若有则注释即可</span><br><span class="line">[chrony] </span><br><span class="line">#192.168.1.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件 &#x2F;etc&#x2F;kubeasz&#x2F;clusters&#x2F;k8s-01&#x2F;config.yml</p>
+<ul>
+<li><p>离线情况下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSTALL_SOURCE: &quot;offline&quot;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>DNS 相关的配置项</strong>，查看宿主机的配置文件 &#x2F;etc&#x2F;resolv.conf 中的 nameserver 是否为空（一般内部系统不存在 DNS 服务）；如果为空，需将 ENABLE_LOCAL_DNS_CACHE 设置为 false，否则 local_dns_cache 这个 Pod 会一直 Crash，详见<a href="https://link.zhihu.com/?target=https://github.com/easzlab/kubeasz/issues/1010">issue</a>中的说明。如果这个配置为 true 的话，集群会使用 <a href="https://link.zhihu.com/?target=https://kubernetes.io/zh/docs/tasks/administer-cluster/nodelocaldns/">NodeLocal DNSCache</a> 提升集群 DNS 性能，集群规模不大的话，可以不开启此功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dns_install: &quot;yes&quot;</span><br><span class="line">corednsVer: &quot;__coredns__&quot;</span><br><span class="line">ENABLE_LOCAL_DNS_CACHE: true</span><br><span class="line">dnsNodeCacheVer: &quot;__dns_node_cache__&quot;</span><br><span class="line">LOCAL_DNS_CACHE: &quot;10.70.132.10&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Harbor配置 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HARBOR_VER: &quot;v2.1.3&quot;</span><br><span class="line">HARBOR_DOMAIN: &quot;harbor.qihoo.com&quot;</span><br><span class="line">HARBOR_TLS_PORT: 8443</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>执行安装 </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./ezctl setup k8s-01 all  <span class="comment">#即可一键完成所有步骤安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#也可以分步安装，对每一步进行验证</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 01</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 02</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 03</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 04</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ezctl 命令行使用介绍可查看</p>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="在线模式"><a href="#在线模式" class="headerlink" title="在线模式"></a>在线模式</h6><ul>
+<li><p>安装python2.7 ,已安装可忽略</p>
+<ul>
+<li><p>centos系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新yum，安装python ,已安装可忽略</span></span><br><span class="line">yum update</span><br><span class="line">yum install python -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装python2 , 已安装可忽略</span></span><br><span class="line">apt-get install python2.7</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu16.04可能需要配置以下软连接</span></span><br><span class="line">ln -s /usr/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>安装ansible</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意pip 21.0以后不再支持python2和python3.5，需要如下安装</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">To install pip <span class="keyword">for</span> Python 2.7 install it from https://bootstrap.pypa.io/2.7/ :</span></span><br><span class="line">curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">python -m pip install --upgrade &quot;pip &lt; 21.0&quot;</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pip安装ansible(国内如果安装太慢可以直接用pip阿里云加速)</span></span><br><span class="line">pip install ansible -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ssh免密配置，已经手动配置了互信免密机制可忽略,在主节点进行操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更安全 Ed25519 算法</span></span><br><span class="line">ssh-keygen -t ed25519 -N &#x27;&#x27; -f ~/.ssh/id_ed25519</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者传统 RSA 算法</span></span><br><span class="line">ssh-keygen -t rsa -b 2048 -N &#x27;&#x27; -f ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">ssh-copy-id $IPs #$IPs为所有节点地址包括自身，按照提示输入yes 和root密码</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>完成上述步骤后，在主节点初始化集群基本配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ezctl new k8s-01 </span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>修改配置文件，和离线模式内的修改方式一致，完成修改后，执行一键安装脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ezctl setup k8s-01 all</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="完成安装后进行验证，在节点上执行"><a href="#完成安装后进行验证，在节点上执行" class="headerlink" title="完成安装后进行验证，在节点上执行"></a>完成安装后进行验证，在节点上执行</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看节点信息</span></span><br><span class="line">kubectl get node -owide</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看默认pod信息，观察是否存在重启，失败等</span></span><br><span class="line">kubectl get pod -n kube-system</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="kuboard-大屏组件安装-可选"><a href="#kuboard-大屏组件安装-可选" class="headerlink" title="kuboard 大屏组件安装(可选)"></a>kuboard 大屏组件安装(可选)</h3><p>Kuboard 是一款免费的 Kubernetes 管理工具，提供了丰富节点管理，部署等能力，可视化界面操作，简单便捷</p>
+<p>安装步骤参考 </p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
