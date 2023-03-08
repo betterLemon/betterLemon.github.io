@@ -1,314 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/02/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<!DOCTYPE html>
+<html lang="zh_cn" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Java GC 机制与内存分配策略 - 柠檬汽水</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,Java GC 机制与内存分配策略
+为什么我们要了解学习 GC 与内存分配呢？ 
+在 JVM 自动内存管理机制的帮助下，不再需要为每一个new操作写配对的delete&amp;#x2F;free代码。但出现,"> 
+    <meta name="author" content="dongxuxie"> 
+    <link rel="alternative" href="atom.xml" title="柠檬汽水" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Java GC 机制与内存分配策略 - 柠檬汽水"/>
+    <meta name="twitter:description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,Java GC 机制与内存分配策略
+为什么我们要了解学习 GC 与内存分配呢？ 
+在 JVM 自动内存管理机制的帮助下，不再需要为每一个new操作写配对的delete&amp;#x2F;free代码。但出现,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="柠檬汽水"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Java GC 机制与内存分配策略 - 柠檬汽水"/>
+    <meta property="og:description" content="将生活带给你柠檬般的酸楚，酿成犹如柠檬汽水般的甘甜,Java GC 机制与内存分配策略
+为什么我们要了解学习 GC 与内存分配呢？ 
+在 JVM 自动内存管理机制的帮助下，不再需要为每一个new操作写配对的delete&amp;#x2F;free代码。但出现,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<body class="loading">
+    <span id="config-title" style="display:none">柠檬汽水</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://betterlemon.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Java GC 机制与内存分配策略</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>git编辑commit记录</title>
-    <url>/2023/03/07/git%E7%BC%96%E8%BE%91commit%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="修改Git提交记录"><a href="#修改Git提交记录" class="headerlink" title="修改Git提交记录"></a>修改Git提交记录</h1><h2 id="1-修改最近一次commit的信息"><a href="#1-修改最近一次commit的信息" class="headerlink" title="1. 修改最近一次commit的信息"></a>1. 修改最近一次commit的信息</h2><p>查看当前的commit信息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Java GC 机制与内存分配策略</h1>
+        <div class="stuff">
+            <span>三月 08, 2023</span>
+            
 
-<p>修改commit信息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入命令模式编辑提交信息</span></span><br><span class="line">$ git commit --amend</span><br><span class="line"><span class="comment"># 或使用命令修改author信息</span></span><br><span class="line">$ git commit --amend --author=<span class="string">&quot;xxxx &lt;xxx#xx.cn&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-修改近期的提交"><a href="#2-修改近期的提交" class="headerlink" title="2. 修改近期的提交"></a>2. 修改近期的提交</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git rebase 最近的n次提交，例如2次</span></span><br><span class="line">$ git rebase -i HEAD~2</span><br><span class="line"><span class="comment"># 按vim编辑器的模式，a\i\o进入编辑模式</span></span><br><span class="line"><span class="comment"># 将要修改的commit记录的 pick 修改为edit，保存退出</span></span><br><span class="line"><span class="comment"># 修改提交信息</span></span><br><span class="line">$ git commit --amend</span><br><span class="line"></span><br><span class="line">$ git commit --amend --author=<span class="string">&quot;xxxx &lt;xxx#xx.cn&gt;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 继续修改其他commit记录</span></span><br><span class="line">$ git rebase --<span class="built_in">continue</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交修改的commit记录</span></span><br><span class="line">$ git push --force</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>K8S 集群部署</title>
-    <url>/2023/03/07/K8S-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</url>
-    <content><![CDATA[<h1 id="K8S-集群部署"><a href="#K8S-集群部署" class="headerlink" title="K8S 集群部署"></a>K8S 集群部署</h1><h3 id="使用kubeasz进行离线集群部署"><a href="#使用kubeasz进行离线集群部署" class="headerlink" title="使用kubeasz进行离线集群部署"></a>使用kubeasz进行离线集群部署</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul>
-<li><p>直接下载安装工具</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export release=3.0.0</span><br><span class="line">curl -C- -fLO --retry 3 https://github.com/easzlab/kubeasz/releases/download/$&#123;release&#125;/ezdown</span><br><span class="line">chmod +x ./ezdown</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载 k8s&#x2F;docker 安装包 ( 默认下载最新版本 )</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./ezdown -D</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载离线系统包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./ezdown -P</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在接外网情况下可以直接使用上述命令，否则将在后续的安装包中给出下载好的文件。完成后目录如下</p>
-<ul>
-<li><code>/etc/kubeasz</code> 包含 kubeasz 版本为 ${release} 的发布代码</li>
-<li><code>/etc/kubeasz/bin</code> 包含 k8s&#x2F;etcd&#x2F;docker&#x2F;cni 等二进制文件</li>
-<li><code>/etc/kubeasz/down</code> 包含集群安装时需要的离线容器镜像</li>
-<li><code>/etc/kubeasz/down/packages</code> 包含集群安装时需要的系统基础软件</li>
-</ul>
-</li>
-</ul>
-<h4 id="集群规划"><a href="#集群规划" class="headerlink" title="集群规划"></a>集群规划</h4><ul>
-<li><p>测试环境规划3台服务器做集群</p>
-<table>
-<thead>
-<tr>
-<th align="center">IP</th>
-<th align="center">k8s</th>
-<th align="center">hostname</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">10.70.132.55</td>
-<td align="center">master</td>
-<td align="center">k8s-master</td>
-</tr>
-<tr>
-<td align="center">10.70.132.39</td>
-<td align="center">worker</td>
-<td align="center">k8s-slave1</td>
-</tr>
-<tr>
-<td align="center">10.70.132.189</td>
-<td align="center">worker</td>
-<td align="center">k8s-slave2</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>默认配置下容器&#x2F;kubelet会占用&#x2F;var的磁盘空间，如果磁盘分区特殊，可以设置config.yml中的容器&#x2F;kubelet数据目录：<code>CONTAINERD_STORAGE_DIR</code> <code>DOCKER_STORAGE_DIR</code> <code>KUBELET_ROOT_DIR</code>  正常情况下可保持不变</p>
-</li>
-<li><p>三台服务器配置互信免密</p>
-</li>
-</ul>
-<h4 id="安装k8s集群"><a href="#安装k8s集群" class="headerlink" title="安装k8s集群"></a>安装k8s集群</h4><h6 id="离线模式"><a href="#离线模式" class="headerlink" title="离线模式"></a>离线模式</h6><ul>
-<li><p>启动 kubeasz 容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./ezdown -S</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置允许离线安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sed -i &#x27;s/^INSTALL_SOURCE.*$/INSTALL_SOURCE: &quot;offline&quot;/g&#x27; /etc/kubeasz/example/config.yml </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>若安装单机版</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it kubeasz ezctl start-aio</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>多节点集群安装</p>
-<ul>
-<li><p>先执行上面的单节点安装 docker exec 命令，然后进入docker 容器内 <strong>docker exec -it kubeasz bash</strong></p>
-</li>
-<li><p>kubeasz 容器会映射宿主机的目录，所以能容器环境下执行或使用 &#x2F;etc&#x2F;kubeasz 目录下的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/kubeasz</span><br><span class="line">./ezctl new k8s-01  这里表示创建一个名称为 k8s-01 的集群，名字可自取，这一步会初始化一些基本的配置文件出来</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改配置文件 &#x2F;etc&#x2F;kubeasz&#x2F;clusters&#x2F;k8s-01&#x2F;hosts， 注意以下配置，对应集群规划进行修改</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[etcd]</span><br><span class="line">10.70.132.39</span><br><span class="line">10.70.132.55</span><br><span class="line">10.70.132.189</span><br><span class="line"></span><br><span class="line"># master node(s)</span><br><span class="line">[kube_master]</span><br><span class="line">10.70.132.55</span><br><span class="line"></span><br><span class="line"># work node(s)</span><br><span class="line">[kube_node]</span><br><span class="line">10.70.132.189</span><br><span class="line">10.70.132.39</span><br><span class="line"></span><br><span class="line"># [optional] harbor server, a private docker registry</span><br><span class="line"># &#x27;NEW_INSTALL&#x27;: &#x27;true&#x27; to install a harbor server; &#x27;false&#x27; to integrate with existed one</span><br><span class="line">[harbor]</span><br><span class="line">10.70.132.39 NEW_INSTALL=true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 集群服务器之间是否已经安装了NTP 服务器？如果没有的话，请安装 chrony 做节点间时间同步，修改成主节点IP即可若有则注释即可</span><br><span class="line">[chrony] </span><br><span class="line">#192.168.1.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改配置文件 &#x2F;etc&#x2F;kubeasz&#x2F;clusters&#x2F;k8s-01&#x2F;config.yml</p>
-<ul>
-<li><p>离线情况下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSTALL_SOURCE: &quot;offline&quot;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p><strong>DNS 相关的配置项</strong>，查看宿主机的配置文件 &#x2F;etc&#x2F;resolv.conf 中的 nameserver 是否为空（一般内部系统不存在 DNS 服务）；如果为空，需将 ENABLE_LOCAL_DNS_CACHE 设置为 false，否则 local_dns_cache 这个 Pod 会一直 Crash，详见<a href="https://link.zhihu.com/?target=https://github.com/easzlab/kubeasz/issues/1010">issue</a>中的说明。如果这个配置为 true 的话，集群会使用 <a href="https://link.zhihu.com/?target=https://kubernetes.io/zh/docs/tasks/administer-cluster/nodelocaldns/">NodeLocal DNSCache</a> 提升集群 DNS 性能，集群规模不大的话，可以不开启此功能</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dns_install: &quot;yes&quot;</span><br><span class="line">corednsVer: &quot;__coredns__&quot;</span><br><span class="line">ENABLE_LOCAL_DNS_CACHE: true</span><br><span class="line">dnsNodeCacheVer: &quot;__dns_node_cache__&quot;</span><br><span class="line">LOCAL_DNS_CACHE: &quot;10.70.132.10&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Harbor配置 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HARBOR_VER: &quot;v2.1.3&quot;</span><br><span class="line">HARBOR_DOMAIN: &quot;harbor.qihoo.com&quot;</span><br><span class="line">HARBOR_TLS_PORT: 8443</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>执行安装 </p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./ezctl setup k8s-01 all  <span class="comment">#即可一键完成所有步骤安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#也可以分步安装，对每一步进行验证</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 01</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 02</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 03</span></span><br><span class="line"><span class="comment"># ezctl setup k8s-01 04</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ezctl 命令行使用介绍可查看</p>
-</li>
-</ul>
-</li>
-</ul>
-<h6 id="在线模式"><a href="#在线模式" class="headerlink" title="在线模式"></a>在线模式</h6><ul>
-<li><p>安装python2.7 ,已安装可忽略</p>
-<ul>
-<li><p>centos系统</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新yum，安装python ,已安装可忽略</span></span><br><span class="line">yum update</span><br><span class="line">yum install python -y</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Ubuntu </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装python2 , 已安装可忽略</span></span><br><span class="line">apt-get install python2.7</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu16.04可能需要配置以下软连接</span></span><br><span class="line">ln -s /usr/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>安装ansible</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意pip 21.0以后不再支持python2和python3.5，需要如下安装</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">To install pip <span class="keyword">for</span> Python 2.7 install it from https://bootstrap.pypa.io/2.7/ :</span></span><br><span class="line">curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py</span><br><span class="line">python get-pip.py</span><br><span class="line">python -m pip install --upgrade &quot;pip &lt; 21.0&quot;</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pip安装ansible(国内如果安装太慢可以直接用pip阿里云加速)</span></span><br><span class="line">pip install ansible -i https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ssh免密配置，已经手动配置了互信免密机制可忽略,在主节点进行操作</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更安全 Ed25519 算法</span></span><br><span class="line">ssh-keygen -t ed25519 -N &#x27;&#x27; -f ~/.ssh/id_ed25519</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者传统 RSA 算法</span></span><br><span class="line">ssh-keygen -t rsa -b 2048 -N &#x27;&#x27; -f ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">ssh-copy-id $IPs #$IPs为所有节点地址包括自身，按照提示输入yes 和root密码</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>完成上述步骤后，在主节点初始化集群基本配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./ezctl new k8s-01 </span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>修改配置文件，和离线模式内的修改方式一致，完成修改后，执行一键安装脚本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./ezctl setup k8s-01 all</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="完成安装后进行验证，在节点上执行"><a href="#完成安装后进行验证，在节点上执行" class="headerlink" title="完成安装后进行验证，在节点上执行"></a>完成安装后进行验证，在节点上执行</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看节点信息</span></span><br><span class="line">kubectl get node -owide</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看默认pod信息，观察是否存在重启，失败等</span></span><br><span class="line">kubectl get pod -n kube-system</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="kuboard-大屏组件安装-可选"><a href="#kuboard-大屏组件安装-可选" class="headerlink" title="kuboard 大屏组件安装(可选)"></a>kuboard 大屏组件安装(可选)</h3><p>Kuboard 是一款免费的 Kubernetes 管理工具，提供了丰富节点管理，部署等能力，可视化界面操作，简单便捷</p>
-<p>安装步骤参考 </p>
-]]></content>
-  </entry>
-  <entry>
-    <title>centos服务器防火墙端口操作</title>
-    <url>/2023/03/07/centos%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 增加端口开放</span></span><br><span class="line">firewall-cmd --zone=public --add-port=6379/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=3399/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=9200/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=9092/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=2900/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=7001/tcp --permanent</span><br><span class="line">firewall-cmd --reload </span><br><span class="line">firewall-cmd --zone=public --list-ports</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-  </entry>
-  <entry>
-    <title>安全checklist</title>
-    <url>/2023/03/07/%E5%AE%89%E5%85%A8checklist/</url>
-    <content><![CDATA[<h3 id="安全checklist"><a href="#安全checklist" class="headerlink" title="安全checklist"></a>安全checklist</h3><h5 id="权限系统-注册-x2F-注册-x2F-二次验证-x2F-密码重置"><a href="#权限系统-注册-x2F-注册-x2F-二次验证-x2F-密码重置" class="headerlink" title="权限系统 (注册&#x2F;注册&#x2F;二次验证&#x2F;密码重置)"></a>权限系统 (注册&#x2F;注册&#x2F;二次验证&#x2F;密码重置)</h5><ul>
-<li><input disabled="" type="checkbox"> 任何地方都使用 HTTPS.</li>
-<li><input disabled="" type="checkbox"> 使用 <code>Bcrypt</code> 存储密码哈希 (没有使用盐的必要 - <code>Bcrypt</code> 干的就是这个事).</li>
-<li><input disabled="" type="checkbox"> <code>登出</code>之后销毁会话 ID .  </li>
-<li><input disabled="" type="checkbox"> 密码重置后销毁所有活跃的会话.  </li>
-<li><input disabled="" type="checkbox"> OAuth2 验证必须包含 <code>state</code> 参数.</li>
-<li><input disabled="" type="checkbox"> 登陆成功之后不能直接重定向到开放的路径（需要校验，否则容易存在钓鱼攻击）.</li>
-<li><input disabled="" type="checkbox"> 当解析用户注册&#x2F;登陆的输入时，过滤 javascript:&#x2F;&#x2F;、 data:&#x2F;&#x2F; 以及其他 CRLF 字符.</li>
-<li><input disabled="" type="checkbox"> 使用 secure&#x2F;httpOnly cookies.</li>
-<li><input disabled="" type="checkbox"> 移动端使用 <code>OTP</code> 验证时，当调用 <code>generate OTP</code> 或者 <code>Resend OTP</code> API 时不能把 OTP（One Time Password） 直接返回。（一般是通过发送手机验证短信，邮箱随机 code 等方式，而不是直接 response）  </li>
-<li><input disabled="" type="checkbox"> 限制单个用户 <code>Login</code>、<code>Verify OTP</code>、 <code>Resend OTP</code>、<code>generate OTP</code> 等 API 的调用次数，使用 Captcha 等手段防止暴力破解.  </li>
-<li><input disabled="" type="checkbox"> 检查邮件或短信里的重置密码的 token，确保随机性（无法猜测）  </li>
-<li><input disabled="" type="checkbox"> 给重置密码的 token 设置过期时间.</li>
-<li><input disabled="" type="checkbox"> 重置密码成功后，将重置使用的 token 失效.</li>
-</ul>
-<h5 id="用户数据和权限校验"><a href="#用户数据和权限校验" class="headerlink" title="用户数据和权限校验"></a>用户数据和权限校验</h5><ul>
-<li><input disabled="" type="checkbox"> 诸如<code>我的购物车</code>、<code>我的浏览历史</code>之类的资源访问，必须检查当前登录的用户是否有这些资源的访问权限.</li>
-<li><input disabled="" type="checkbox"> 避免资源 ID 被连续遍历访问，使用 <code>/me/orders</code> 代替 <code>/user/37153/orders</code> 以防你忘了检查权限，导致数据泄露。   </li>
-<li><input disabled="" type="checkbox"> <code>修改邮箱/手机号码</code>功能必须首先确认用户已经验证过邮箱&#x2F;手机是他自己的。  </li>
-<li><input disabled="" type="checkbox"> 任何上传功能应该过滤用户上传的文件名，另外，为了普适性的原因（而不是安全问题），上传的东西应该存放到例如 S3 之类的云存储上面(用 lambda 处理)，而不是存储在自己的服务器，防止代码执行。  </li>
-<li><input disabled="" type="checkbox"> <code>个人头像上传</code> 功能应该过滤所有的 <code>EXIF</code> 标签，即便没有这个需求.  </li>
-<li><input disabled="" type="checkbox"> 用户 ID 或者其他的 ID，应该使用 <a href="http://www.ietf.org/rfc/rfc4122.txt">RFC compliant </a> 的 <code>UUID</code> 而不是整数. 你可以从 github 找到你所用的语言的实现.  </li>
-<li><input disabled="" type="checkbox"> <a href="https://jwt.io/">JWT（JSON Web Token）</a>很棒.当你需要构建一个 单页应用&#x2F;API 时使用.</li>
-</ul>
-<h5 id="安卓和-iOS-APP"><a href="#安卓和-iOS-APP" class="headerlink" title="安卓和 iOS APP"></a>安卓和 iOS APP</h5><ul>
-<li><input disabled="" type="checkbox"> 支付网关的 <code>盐（salt）</code> 不应该被硬编码  </li>
-<li><input disabled="" type="checkbox"> 来自第三方的 <code>secret</code> 和 <code>auth token</code> 不应该被硬编码  </li>
-<li><input disabled="" type="checkbox"> 在服务器之间调用的 API 不应该在 app 里面调用  </li>
-<li><input disabled="" type="checkbox"> 在安卓系统下，要小心评估所有申请的 <a href="https://developer.android.com/guide/topics/security/permissions.html">权限</a>   </li>
-<li><input disabled="" type="checkbox"> 在 iOS 系统下，使用系统的钥匙串来存储敏感信息（权限 token、api key、 等等） <strong>不要</strong> 把这类信息存储在用户配置里面  </li>
-<li><input disabled="" type="checkbox"> 强烈推荐<a href="https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning">证书绑定（Certificate pinning）</a></li>
-</ul>
-<h5 id="安全头信息和配置"><a href="#安全头信息和配置" class="headerlink" title="安全头信息和配置"></a>安全头信息和配置</h5><ul>
-<li><input disabled="" type="checkbox"> <code>添加</code> <a href="https://en.wikipedia.org/wiki/Content_Security_Policy">CSP</a> 头信息，减缓 XSS 和数据注入攻击. 这很重要.  </li>
-<li><input disabled="" type="checkbox"> <code>添加</code> <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF</a> 头信息防止跨站请求伪造（CSRF）攻击.同时<code>添加</code> <a href="https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00">SameSite</a> 属性到 cookie 里面.  </li>
-<li><input disabled="" type="checkbox"> <code>添加</code> <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a> 头信息防止 SSL stripping 攻击.</li>
-<li><input disabled="" type="checkbox"> <code>添加</code> 你的域名到 <a href="https://hstspreload.appspot.com/">HSTS 预加载列表</a></li>
-<li><input disabled="" type="checkbox"> <code>添加</code> <a href="https://en.wikipedia.org/wiki/Clickjacking#X-Frame-Options">X-Frame-Options</a> 防止点击劫持.  </li>
-<li><input disabled="" type="checkbox"> <code>添加</code> <a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#X-XSS-Protection">X-XSS-Protection</a> 缓解 XSS 攻击.  </li>
-<li><input disabled="" type="checkbox"> <code>更新</code> DNS 记录，增加 <a href="https://en.wikipedia.org/wiki/Sender_Policy_Framework">SPF</a> 记录防止垃圾邮件和钓鱼攻击.  </li>
-<li><input disabled="" type="checkbox"> 如果你的 Javascript 托管在第三方的 CDN 上面，需要<code>添加</code> <a href="https://en.wikipedia.org/wiki/Subresource_Integrity">内部资源集成检查</a> 。为了更加安全，添加<a href="https://w3c.github.io/webappsec-subresource-integrity/#parse-require-sri-for">require-sri-for</a> CSP-directive 就不会加载到没有 SRI 的资源  </li>
-<li><input disabled="" type="checkbox"> 使用随机的 CSRF token，业务逻辑 API 可以暴露为 POST 请求。不要把 CSRF token 通过 http 接口暴露出来，比如第一次请求更新的时候  </li>
-<li><input disabled="" type="checkbox"> 在 get 请求参数里面，不要使用临界数据和 token。 暴露服务器日志的同时也会暴露用户数据</li>
-</ul>
-<h5 id="过滤输入"><a href="#过滤输入" class="headerlink" title="过滤输入"></a>过滤输入</h5><ul>
-<li><input disabled="" type="checkbox"> 所有暴露给用户的参数输入都应该 <code>过滤</code> 防止 <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS</a> 攻击.</li>
-<li><input disabled="" type="checkbox"> 使用参数化的查询防止 <a href="https://en.wikipedia.org/wiki/SQL_injection">SQL 注入</a>.  </li>
-<li><input disabled="" type="checkbox"> 过滤所有具有功能性的用户输入，比如 <code>CSV导入</code>    </li>
-<li><input disabled="" type="checkbox"> <code>过滤</code>一些特殊的用户输入，例如将 robots.txt 作为用户名，而你刚好提供了 coolcorp.io&#x2F;username 之类的 url 来提供用户信息访问页面。（此时变成 coolcorp.io&#x2F;robots.txt，可能无法正常工作）  </li>
-<li><input disabled="" type="checkbox"> 不要自己手动拼装 JSON 字符串，不管这个对象有多么小。请使用你所用的语言相应的库或者框架来编写</li>
-<li><input disabled="" type="checkbox"> <code>过滤</code> 那些有点像 URL 的输入，防止 <a href="https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit#heading=h.t4tsk5ixehdd">SSRF</a> 攻击  </li>
-<li><input disabled="" type="checkbox"> 在输出显示给用户之前，<code>过滤</code>输出信息</li>
-</ul>
-<h5 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h5><ul>
-<li><input disabled="" type="checkbox"> 如果你的业务很小或者你缺乏经验，可以评估一下使用 AWS 或者一个 PaaS 平台来运行代码  </li>
-<li><input disabled="" type="checkbox"> 在云上使用正规的脚本创建虚拟机  </li>
-<li><input disabled="" type="checkbox"> 检查所有机器没有必要开放的<code>端口</code>  </li>
-<li><input disabled="" type="checkbox"> 检查数据库是否没有设置密码或者使用默认密码，特别是 MongoDB 和 Redis  </li>
-<li><input disabled="" type="checkbox"> 使用 SSH 登录你的机器，不要使用密码，而是通过 SSH key 验证来登录  </li>
-<li><input disabled="" type="checkbox"> 及时更新系统，防止出现 0day 漏洞，比如 Heartbleed、Shellshock 等  </li>
-<li><input disabled="" type="checkbox"> 修改服务器配置，HTTPS 使用 TLS1.2，禁用其他的模式。(值得这么做)</li>
-<li><input disabled="" type="checkbox"> 不要在线上开启 DEBUG 模式，有些框架，DEBUG 模式会开启很多权限以及后门，或者是暴露一些敏感数据到错误栈信息里面  </li>
-<li><input disabled="" type="checkbox"> 对坏人和 DDOS 攻击要有所准备，使用那些提供 DDOS 清洗的主机服务  </li>
-<li><input disabled="" type="checkbox"> 监控你的系统，同时记录到日志里面 (例如使用 <a href="https://newrelic.com/">New Relic</a> 或者其他 ).</li>
-<li><input disabled="" type="checkbox"> 如果是 2B 的业务，坚持顺从需求。如果使用 AWS S3,可以考虑使用 <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html">数据加密</a> 功能. 如果使用 AWS EC2，考虑使用磁盘加密功能（现在系统启动盘也能加密了）</li>
-</ul>
-<h5 id="关于人"><a href="#关于人" class="headerlink" title="关于人"></a>关于人</h5><ul>
-<li><input disabled="" type="checkbox"> 开一个邮件组（例如：<a href="mailto:&#115;&#101;&#99;&#117;&#x72;&#x69;&#x74;&#121;&#64;&#x63;&#x6f;&#x6f;&#x6c;&#99;&#x6f;&#x72;&#112;&#46;&#105;&#x6f;">&#115;&#101;&#99;&#117;&#x72;&#x69;&#x74;&#121;&#64;&#x63;&#x6f;&#x6f;&#x6c;&#99;&#x6f;&#x72;&#112;&#46;&#105;&#x6f;</a>）和搜集页面，方便安全研究人员提交漏洞  </li>
-<li><input disabled="" type="checkbox"> 取决于你的业务，限制用户数据库的访问  </li>
-<li><input disabled="" type="checkbox"> 对报告 bug、漏洞的人有礼貌</li>
-<li><input disabled="" type="checkbox"> 把你的代码给那些有安全编码观念的同伴进行 review (More eyes)</li>
-<li><input disabled="" type="checkbox"> 被黑或者数据泄露时，检查数据访问前的日志，通知用户更改密码。你可能需要外部的机构来帮助审计  </li>
-<li><input disabled="" type="checkbox"> 使用 <a href="https://github.com/Netflix/Scumblr">Netflix Scumblr</a> 及时了解你的组织（公司）在社交网络或者搜索引擎上的一些讨论信息，比如黑客攻击、漏洞等等</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>cmd python乱码问题</title>
-    <url>/2023/03/08/cmd-python%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="将CMD终端改为UTF-8格式"><a href="#将CMD终端改为UTF-8格式" class="headerlink" title="将CMD终端改为UTF-8格式"></a>将CMD终端改为UTF-8格式</h3><h4 id="命令介绍："><a href="#命令介绍：" class="headerlink" title="命令介绍："></a>命令介绍：</h4><ul>
-<li><p>​	chcp 65001  #换成utf-8代码页 </p>
-</li>
-<li><p>​	chcp 936    #换成默认的gbk </p>
-</li>
-<li><p>​	chcp 437    #美国英语</p>
-</li>
-</ul>
-<p>​    一般默认为gbk，若要修改成 utf-8，则需要： </p>
-<h4 id="修改办法"><a href="#修改办法" class="headerlink" title="修改办法"></a>修改办法</h4><ol>
-<li><p>cmd窗口输入： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chcp 65001 </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改cmd属性： </p>
-<p>选择字体为“Lucida Console”</p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title>线程和进程的区别</title>
-    <url>/2023/03/08/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p><strong>进程与线程的区别</strong></p>
-<p><a href="http://blog.csdn.net/dazhong159/article/details/7896070">http://blog.csdn.net/dazhong159/article/details/7896070</a></p>
-<p><strong>简而言之,一个程序至少有一个进程,一个进程至少有一个线程.</strong></p>
-<p>进程：进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动,进程是系统进行资源分配和调度的一个独立单位</p>
-<p>线程：线程是进程的一个实体,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位。线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。</p>
-<p>线程和进程在使用上各有优缺点：线程执行开销小，但不利于资源的管理和保护；而进程正相反。同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。</p>
-<p>进程和线程的关系：</p>
-<p>  （1）一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个线程。</p>
-<p>  （2）资源分配给进程，同一进程的所有线程共享该进程的所有资源。</p>
-<p>  （3）处理机分给线程，即真正在处理机上运行的是线程。</p>
-<p>  （4）线程在执行过程中，需要协作同步。不同进程的线程间要利用消息通信的办法实现同步。线程是指进程内的一个执行单元,也是进程内的可调度实体.</p>
-<p>进程与线程的区别：</p>
-<p>  （1）调度：线程作为调度和分配的基本单位，进程作为拥有资源的基本单位</p>
-<p>  （2）并发性：不仅进程之间可以并发执行，同一个进程的多个线程之间也可并发执行</p>
-<p>  （3）拥有资源：进程是拥有资源的一个独立单位，线程不拥有系统资源，但可以访问隶属于进程的资源.</p>
-<p>  （4）系统开销：在创建或撤消进程时，由于系统都要为之分配和回收资源，导致系统的开销明显大于创建或撤消线程时的开销。</p>
-<p>终止线程</p>
-<p><a href="http://blog.csdn.net/zhanjichun_2008/article/details/6612980">http://blog.csdn.net/zhanjichun_2008/article/details/6612980</a></p>
-<p>有三种方法可以使终止线程。 </p>
-<ol>
-<li>使用退出标志，使线程正常退出，也就是当run方法完成后线程终止。 </li>
-<li>使用stop方法强行终止线程（这个方法不推荐使用，因为stop和suspend、resume一样，也可能发生不可预料的结果）。 </li>
-<li>使用interrupt方法中断线程。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Two</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="built_in">super</span>.run();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sleep(<span class="number">300</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		Two tt=<span class="keyword">new</span> <span class="title class_">Two</span>();</span><br><span class="line">		tt.start();</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">				<span class="comment">//停止线程</span></span><br><span class="line">				tt.interrupt();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-  </entry>
-  <entry>
-    <title>Java GC 机制与内存分配策略</title>
-    <url>/2023/03/08/Java-GC-%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</url>
-    <content><![CDATA[<p><a href="http://blog.csdn.net/xyh269/article/details/53106790"><strong>Java GC 机制与内存分配策略</strong></a></p>
+        </div>
+        <div class="content markdown">
+            <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/xyh269/article/details/53106790"><strong>Java GC 机制与内存分配策略</strong></a></p>
 <p>为什么我们要了解学习 GC 与内存分配呢？ </p>
 <p>在 JVM 自动内存管理机制的帮助下，不再需要为每一个new操作写配对的delete&#x2F;free代码。但出现内存泄漏和溢出的问题时，如果不了解虚拟机是怎样使用内存的，那么排查错误将是一项非常艰难的工作。</p>
 <p>GC（垃圾收集器）在对堆进行回收前，会先确定哪些对象“存活”，哪些已经“死去”。那么就有了<strong>对象存活判定算法</strong>。</p>
@@ -331,7 +96,7 @@
 <p>如果对象在进行可达性分析后发现没有与GC Roots相连接的引用链，那它将会被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行finalize()方法，当对象没有覆盖finalize()方法，或者finalize()方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行”。</p>
 <p>如果这个对象被判定为有必要执行finalize()方法，那么这个对象将会放置在一个叫做F-Queue的队列中，并在稍后由一个由虚拟机自动建立的、低优先级的Finalizer线程去执行它，这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束，这样做的原因是：如果一个对象在finalize()方法中执行缓慢，或者发生了死循环，将很可能会导致F-Queue队列中其他对象永久处于等待，甚至导致整个内存回收系统的奔溃。 </p>
 <p>finalize()方法是对象逃脱死亡命运的最后一次机会，稍后GC将对F-Queue中的对象进行第二次小规模的标记，如果对象要在finalize()方法中成功拯救自己，只需重新与引用链上的任何一个对象建立关联即可，比如把自己（this关键字）赋值给某个类变量或者对象的成员变量，那在第二次标记时它将被移除出“即将回收“的集合，如果对象这时候还没有逃脱，那基本上它就真的被回收了。</p>
-<p>另外，任何一个对象的finalize()方法都只会被系统自动调用一次。finalize()能做的所有工作，使用try-finally或者其他方式都可以做的更好，更及时，所以建议大家完全可以忘掉<a href="http://lib.csdn.net/base/javaee"><strong>Java</strong></a>语言中有这个方法的存在。详见《深入理解Java虚拟机》</p>
+<p>另外，任何一个对象的finalize()方法都只会被系统自动调用一次。finalize()能做的所有工作，使用try-finally或者其他方式都可以做的更好，更及时，所以建议大家完全可以忘掉<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/javaee"><strong>Java</strong></a>语言中有这个方法的存在。详见《深入理解Java虚拟机》</p>
 <p><strong>垃圾收集算法</strong></p>
 <p><strong>标记-清除算法：</strong></p>
 <p>算法分为“标记“和”清除“两个阶段： </p>
@@ -384,6 +149,114 @@
 <p><strong>空间分配担保：</strong>在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果这个条件成立，那么Minor GC可以确保是安全的。如果不成立，则虚拟机会查看HandlePromotionFailure设置值是否允许担保失败。</p>
 <p><strong>总结</strong></p>
 <p>内存回收与垃圾收集器在很多时候都是影响系统性能、并发能力的主要因素之一，虚拟机之所以提供多种不同的收集器以及提供大量的调节参数，是因为只有根据实际应用需求、实现方式选择最优的收集方式才能获取最高的性能。没有固定收集器、参数组合，也没有最优的调优方法，虚拟机也就没有什么必然的内存回收行为。</p>
-]]></content>
-  </entry>
-</search>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
